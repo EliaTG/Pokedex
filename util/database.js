@@ -6,4 +6,5 @@ const sequelize = new Sequelize("pokemon", "root", "1234", {
     port: 3306,
 });
 
+
 module.exports = sequelize;

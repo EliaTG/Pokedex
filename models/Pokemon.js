@@ -13,7 +13,7 @@ const Pokemon = sequelize.define("pokemon",{
         allowNull: false,
     },
     description:{
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false,
     },
     type:{
@@ -24,10 +24,10 @@ const Pokemon = sequelize.define("pokemon",{
         type: Sequelize.STRING,
         allowNull: false,
     },
-    // imagurl:{
-    //     type: DataTypes.BLOB('long'),
-    //     allowNull: false,
-    // },
+    imageUrl:{
+        type: Sequelize.STRING,
+        allowNull: true,
+    },
 });
 
 module.exports = Pokemon;
