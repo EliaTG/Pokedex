@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{!-- <link rel="icon" href="assets/css/imgs/pokedex.png" type="image/png" /> --}}
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>{{pageTitle}}</title>
+</head>
+<body>
+        <nav class="navbar">
+                    <div class="logo">
+                        <img src="assets/imgs/logo.png" alt="Pokemon Logo">
+                    </div>
+                    <ul>
+                        <li>
+                             <a class="nav-link {{#if homeActive}}active{{/if}}" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li>
+                           <a class="nav-link {{#if pokemonActive}}active{{/if}}" href="/pokemons">Pokemons</a>
+                        </li>
+                        <li>
+                              <a class="nav-link {{#if regionActive}}active{{/if}}" href="/regions">Regions</a>
+                        </li>
+                        <li>
+                            <a class="nav-link {{#if typeActive}}active{{/if}}" href="/types">Types</a>
+                        </li>
+                    </ul>
+                        <div class="search">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <option selected>Regions</option>
+                                <option value="1">Kanto</option>
+                                <option value="2">Johto</option>
+                                <option value="3">Hoenn</option>
+                                <option value="4">Unova</option>
+                                <option value="5">Kalos</option>
+                                <option value="6">Alola</option>
+                                <option value="7">Galar</option>
+                            </select>
+                        <form class="d-flex" role="search">
+                            <input class="input-search me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn-search" type="submit">Search</button>
+                        </form>
+
+                        </div>
+        </nav>
+            <div class="hero">
+                {{{body}}}
+            </div>
+</body>
+</html>

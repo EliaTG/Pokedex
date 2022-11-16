@@ -1,0 +1,59 @@
+<main>
+    <div class="row  heroes">
+                    <div class="col-lg-6 col-md-8 mx-auto  info-pokemon">
+                        <h1 class="logoh1">Gotta Catch 'Em All!</h1>
+                        <p>
+                            <a href="/create-type" class="btn btn-create my-2">Create a new type</a>
+                        </p>
+                        <div class="imgs-pokemon">
+                            <img src="assets/imgs/ash.png" alt="Ash and Pikachu picture" srcset="">
+                            <img src="assets/imgs/background.jpg" alt="Pokemon Picture" srcset="">
+                        </div>
+                    </div>
+                    <div class="pokemon-background">
+                        <img class="bulbasur-type" src="assets/imgs/pokemons/bulbasur.png" alt="Bulbasur picture" srcset="">
+                    </div>
+    </div>
+        <div class="album py-5">
+        <div class="container">
+
+            <div class="row">
+
+            {{#if hasHeroes}}
+
+                {{#each heroes as |hero|}}
+
+                <div class="card col-md-3">
+                    <div class="card-body">
+                    <div class="img-div">
+                        <img class="pokemonimg" src="{{this.imageUrl}}" class="img_movie card-img-top" alt="{{this.title}}" />
+                        <h5 class="card-title">{{pokemon.name}}</h5>
+                    </div>
+                    <p class="card-text">{{hero.description}}</p>
+                    <h6 class="card-subtitle mb-2 text-muted">Type: {{hero.race.dataValues.name}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Region: {{hero.race.dataValues.name}} </h6>
+                    <a
+                        href="/edit-type/{{pokemon.id}}?edit=true"
+                        class="btn btn-warning"
+                    >Edit</a>
+
+                    <form id="form-delete" class="form-inline" action="/delete-type" method="post">
+                        <input type="hidden" name="typeId" value="{{pokemon.id}}" />
+                        <button type="submit" id="delete-type" class="btn btn-danger">Delete</button>
+
+                    </form>
+                    </div>
+                </div>
+
+                {{/each}}
+
+            {{else}}
+
+                <h1 class="notcreated">There are not type of pokemon created</h1>
+
+            {{/if}}
+
+            </div>
+        </div>
+        </div>
+</main>

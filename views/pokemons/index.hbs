@@ -1,0 +1,51 @@
+<main>
+        <div class="row  heroes">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="logoh1">Pokedex App</h1>
+                <p class="lead text-muted">Pokemon, also known as Pocket Monsters in Japan,
+                    is a Japanese media franchise managed by the Pokemon Company, a company founded by Nintendo.
+                </p>
+                {{!-- <img class="heroimg" src="assets/imgs/pokemons/pikachu.png" alt="" srcset=""> --}}
+            </div>
+        </div>
+
+                    <div class="album py-5">
+                        <div class="container">
+
+                            <div class="row">
+
+                            {{#if hasHeroes}}
+
+                                {{#each heroes as |hero|}}
+
+                                <div class="card col-md-3">
+                                    <div class="card-body">
+                                        <div class="img-div">
+                                            <img class="heroimg" src="assets/imgs/pokemons/pikachu.png" alt="" srcset="">
+                                            {{!-- <img src="{{this.imageUrl}}" class="img_movie card-img-top" alt="{{this.title}}" /> --}}
+                                        <h5 class="card-title">{{pokemon.name}}Pikachu</h5>
+                                        </div>
+                                        <p class="card-text">{{hero.description}} 
+                                        Pikachu that can generate powerful electricity have cheek sacs that are extra soft and super stretchy.
+                                        </p>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{hero.race.dataValues.name}}Type: Electric</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{hero.race.dataValues.name}}Region: Kanto </h6>
+                                    </div>
+                                </div>
+
+
+                    </div>
+                    </div>
+
+                    {{/each}}
+
+                {{else}}
+
+                    <h1 class="notcreated">There are not pokemon created</h1>
+
+                {{/if}} 
+
+                </div>
+            </div>
+        </div>
+</main>

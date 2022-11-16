@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+:root{
+   --black: #0e0f0e;
+   --white: #f7f7f7;
+   --background: #ddfae8;
+    --fontColor: #458e69;
+    --borderYellow: #fee264;
+
+
+   --pikachu: #F6CF57;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Space Mono', monospace;
+    background-color: var(--background);
+    height: 100vh;
+}
+.navbar{
+    display: flex;
+    padding: 20px 0 10px 0;
+    /* justify-content: flex-start; */
+    justify-content: space-around;
+}
+ul{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+ul li{
+    list-style: none;
+}
+ul li a{
+    text-decoration: none;
+    color: var(--fontColor);
+    font-weight: bold;
+    font-size: 18px;
+}
+.nav-link{
+    margin: 0;
+    padding: 0 15px;
+}
+.nav-link:hover{
+    color: var(--pikachu);
+}
+.logo img{
+    height: 50px;
+    object-fit: cover;
+}
+/* Search Div */
+.search{
+    display: flex;
+    flex-direction: row;
+}
+input.input-search{
+    display: block;
+    width: auto;
+    margin: 0 0 0 10px;
+    border: none;
+    border-radius: 15px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+}
+.input-search:focus{
+    border-color: var(--pikachu);
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 3px rgba(255,144,0,0.6);
+    outline: 0 none;
+}
+button.btn-search{
+    border: none;
+    color: var(--white);
+    background-color: var(--fontColor);
+    border-radius: 15px;
+    font-size: 14px;
+    width: 90px;
+}
+.form-select{
+    border-radius: 15px;
+}
+.hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logoh1{
+    color: var(--fontColor);
+    font-weight: bold;
+}
+.btn-pokemon{
+    background-color: var(--fontColor);
+    color: var(--white);
+}
+.heroes{
+    padding: 60px 0 30px 0;
+    display: flex;
+    flex-direction: row;
+}
+div.pokemon-background{
+    height: 500px;
+    width: 500px;
+    display: flex;
+    align-items: center;
+}
+.pokemon-background img{
+    height: 500px;
+    width: auto;
+    /* height: 100%; */
+}
+
+.info-pokemon{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.btn-create{
+    border-radius: 20px;
+    background-color: var(--black);
+    color: white;
+    height: 40px;
+    margin: 10px 0 0 0;
+}
+.imgs-pokemon{
+    margin: 20px 0 0 0;
+}
+.imgs-pokemon img{
+    border-radius: 10px;
+    width: 200px;
+    height: 140px;
+    object-fit: cover;
+
+}
+.heroes p a:hover{
+    color: white;
+
+}
+.lead{
+    font-size: 1rem;
+}
+.active{
+    color: var(--pikachu);
+}
+/* Cards */
+.card{
+    border-radius: 10px;
+    padding: 0;
+}
+.card-body{
+    border-radius: 10px;
+    margin: 0 auto;
+    background-color: var(--pikachu);
+}
+h5.card-title{
+    text-align: center;
+}
+.img-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+img.pokemonimg{
+    height: 150px;
+    width: 150px;
+    margin: 0 0 5px 0;
+    object-fit: cover;
+}
+.notcreated{
+    margin: 50px 0 0 0;
+    text-align: center;
+}
+/* Create a new pokemon card */
+.pokemon-card{
+    margin: 50px 0 0 0;
+}
+.card-pokemon{
+    padding: 15px;
+}
+.pokemon-header{
+ background-color: var(--fontColor);
+ text-align: center;
+}
+/* Region */
+img.squirtle-region{
+    height: 400px;
+    width: auto;
+}
+/* Type */
+img.bulbasur-type{
+    height: 400px;
+    width: auto;
+}
+/* 404 not found */
+div.notfound{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.notfound img{
+    height: 500px;
+    width: 500px;
+}
