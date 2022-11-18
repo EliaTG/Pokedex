@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
+    {{!-- <div class="col-md-3"></div>
+    <div class="col-md-6"> --}}
 
-    {{!-- {{#if hasRaces}} --}}
+    {{#if hasRegion}}
       <div class="card pokemon-card">
         <div class="card-header pokemon-header text-white">
           {{#if editMode}}Edit{{else}}Create{{/if}} a pokemon
@@ -11,12 +11,33 @@
           <form method="POST" action="{{#if editMode}}/edit-pokemon{{else}}/create-pokemon{{/if}}">
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name" name="Name" value="{{#if editMode}}{{hero.name}}{{/if}}" />
+              <input type="text" class="form-control" id="name" name="Name" value="{{#if editMode}}{{pokemon.name}}{{/if}}" />
             </div>
+            
             <div class="mb-3">
-              <label for="type" class="form-label">Type</label>
-              <input type="text" class="form-control" id="type" name="Type" value="{{#if editMode}}{{hero.type}}{{/if}}" />
+                  <label for="imageUrl" class="form-label">Image URL</label>
+                  <input type="text" class="form-control" id="imageUrl" name="ImageUrl" value="{{#if editMode}}{{pokemon.imageUrl}}{{/if}}" />
+             </div>
+            <div class="mb-3">
+
+            <div class="mb-3">
+              <label for="type" class="form-label">Type </label>
+              <select class="form-select" id="type" name="Type">
+                <option {{#if editMode}}{{else}}selected{{/if}}>Select an option</option>
+
+                {{#each type as |type|}}
+
+                    {{#if (equalValue type.typeId ../type.typeId )}}
+                    <option selected value="{{type.typeId}}">{{type.name}}</option>
+                    {{else}}
+                    <option value="{{type.typeId}}">{{type.name}}</option>
+                    {{/if}}
+                  
+                {{/each}} 
+                
+              </select>
             </div>
+
 
             <div class="mb-3">
               <label for="description" class="form-label">Description</label>
@@ -26,7 +47,7 @@
                 cols="60"
                 rows="5"
                 class="form-control"
-              >{{#if editMode}}{{hero.description}}{{/if}}</textarea>
+              >{{#if editMode}}{{pokemon.description}}{{/if}}</textarea>
             </div>
 
             <div class="mb-3">
@@ -34,12 +55,12 @@
               <select class="form-select" id="region" name="Region">
                 <option {{#if editMode}}{{else}}selected{{/if}}>Select an option</option>
 
-                {{#each races as |race|}}
+                {{#each region as |region|}}
 
-                    {{#if (equalValue race.id ../hero.raceId )}}
-                    <option selected value="{{race.id}}">{{race.name}}</option>
+                    {{#if (equalValue region.regionId ../region.regionId )}}
+                    <option selected value="{{region.regionId}}">{{region.name}}</option>
                     {{else}}
-                    <option value="{{race.id}}">{{race.name}}</option>
+                    <option value="{{region.regionId}}">{{region.name}}</option>
                     {{/if}}
                   
                 {{/each}} 
@@ -50,23 +71,23 @@
 
           {{#if editMode}}
 
-          <input type="hidden" name="pokemonId" value="{{hero.id}}">
+          <input type="hidden" name="pokemonId" value="{{pokemon.id}}">
           
           {{/if}}
 
           <button type="submit" class="btn btn-primary">{{#if editMode}}Edit{{else}}Create{{/if}}</button>
-           <a href="/" type="button" class="btn btn-warning">Back</a>
+           <a href="/pokemons" type="button" class="btn btn-warning">Back</a>
         </form>
 
       </div>
     </div>
 
-    {{!-- {{else}} --}}
+    {{else}} 
 
-    {{!-- <h1 class="notcreated">There are not pokemon created</h1> --}}
+    <h1 class="notcreated">There are not pokemon created</h1>
 
-    {{!-- {{/if}} --}}
+    {{/if}}
 
     </div>
-    <div class="col-md-6"></div>
+    {{!-- <div class="col-md-6"></div> --}}
 </div>

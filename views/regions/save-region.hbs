@@ -10,16 +10,24 @@
           <form method="POST" action="{{#if editMode}}/edit-region{{else}}/create-region{{/if}}">
             <div class="mb-3">
               <label for="name" class="form-label">Region Name</label>
-              <input type="text" class="form-control" id="name" name="Name" value="{{#if editMode}}{{hero.name}}{{/if}}" />
+              <input type="text" class="form-control" id="name" name="Name" value="{{#if editMode}}{{region.name}}{{/if}}" />
             </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                name="Description" id="description"cols="60" rows="5" class="form-control"
+              >{{#if editMode}}{{region.description}}{{/if}}</textarea>
+            </div>
+
+
           {{#if editMode}}
 
-          <input type="hidden" name="regionId" value="{{hero.id}}">
+          <input type="hidden" name="regionId" value="{{region.regionId}}">
           
           {{/if}}
 
           <button type="submit" class="btn btn-primary">{{#if editMode}}Edit{{else}}Create{{/if}}</button>
-           <a href="/" type="button" class="btn btn-warning">Back</a>
+           <a href="/regions" type="button" class="btn btn-warning">Back</a>
         </form>
 
       </div>

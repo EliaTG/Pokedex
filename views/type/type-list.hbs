@@ -18,34 +18,27 @@
         <div class="container">
 
             <div class="row">
+            {{#if hasType}}
+                <div class="cardRegions">
+                    {{#each type as |type|}}
 
-            {{#if hasHeroes}}
+                    {{!-- <div class="card col-md-3"> --}}
+                        {{!-- <div class="card-body"> --}}
+                            <div class="list">
+                                <h2 class="h5Region">{{this.name}}</h2>
+                                <p class="paragRegion">{{this.description}}</p>
+                                <div class="btns">
+                                    <a href="/edit-type/{{pokemon.id}}?edit=true"
+                                        class="btn btn-warning">Edit</a>
 
-                {{#each heroes as |hero|}}
-
-                <div class="card col-md-3">
-                    <div class="card-body">
-                    <div class="img-div">
-                        <img class="pokemonimg" src="{{this.imageUrl}}" class="img_movie card-img-top" alt="{{this.title}}" />
-                        <h5 class="card-title">{{pokemon.name}}</h5>
-                    </div>
-                    <p class="card-text">{{hero.description}}</p>
-                    <h6 class="card-subtitle mb-2 text-muted">Type: {{hero.race.dataValues.name}}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Region: {{hero.race.dataValues.name}} </h6>
-                    <a
-                        href="/edit-type/{{pokemon.id}}?edit=true"
-                        class="btn btn-warning"
-                    >Edit</a>
-
-                    <form id="form-delete" class="form-inline" action="/delete-type" method="post">
-                        <input type="hidden" name="typeId" value="{{pokemon.id}}" />
-                        <button type="submit" id="delete-type" class="btn btn-danger">Delete</button>
-
-                    </form>
-                    </div>
+                                    <form id="form-delete" class="form-inline DeleteType" action="/delete-type" method="post">
+                                            <input type="hidden" name="typeId" value="{{pokemon.id}}" />
+                                            <button type="submit" id="delete-type" class="btn btn-danger delete-pokemon">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                    {{/each}}
                 </div>
-
-                {{/each}}
 
             {{else}}
 

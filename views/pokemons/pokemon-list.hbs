@@ -19,29 +19,27 @@
 
             <div class="row">
 
-            {{#if hasHeroes}}
+            {{#if hasPokemon}}
 
-                {{#each heroes as |hero|}}
+                {{#each pokemon as |pokem|}}
 
                 <div class="card col-md-3">
                     <div class="card-body">
                     <div class="img-div">
-                        <img class="pokemonimg" src="{{this.imageUrl}}" class="img_movie card-img-top" alt="{{this.title}}" />
-                        <h5 class="card-title">{{pokemon.name}}Pikachu</h5>
+                        <img class="pokemonimg" src="{{this.imageUrl}}" class="img_movie card-img-top" alt="{{this.name}}" />
+                        <h5 class="card-title">{{this.name}}</h5>
                     </div>
-                    <p class="card-text">{{hero.description}}</p>
-                    <h6 class="card-subtitle mb-2 text-muted">Type: {{hero.race.dataValues.name}}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Region: {{hero.race.dataValues.name}} </h6>
-                    <a
-                        href="/edit-pokemon/{{pokemon.id}}?edit=true"
-                        class="btn btn-warning"
-                    >Edit</a>
-
-                    <form id="form-delete" class="form-inline" action="/delete-pokemon" method="post">
-                        <input type="hidden" name="pokemonId" value="{{pokemon.id}}" />
-                        <button type="submit" id="delete-pokemon" class="btn btn-danger">Delete</button>
-
-                    </form>
+                    <p class="card-text">{{this.description}}</p>
+                    <h6 class="card-subtitle mb-2 text-muted">Type: {{pokem.type.dataValues.name}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Region: {{pokem.region.dataValues.name}} </h6>
+                            <form id="form-delete" class="form-inline" action="/delete-pokemon" method="post">
+                                <input type="hidden" name="pokemonId" value="{{this.id}}" />
+                                <button type="submit" id="delete-pokemon" class="btn btnDelete delete-pokemon btn-danger float-end">Delete</button>
+                            </form>
+                            <a
+                                href="/edit-pokemon/{{this.id}}?edit=true"
+                                class="btn btn-warning float-end btnEdit"
+                            >Edit</a>
                     </div>
                 </div>
 

@@ -19,33 +19,28 @@
 
             <div class="row">
 
-            {{#if hasHeroes}}
+            {{#if hasRegion}}
 
-                {{#each heroes as |hero|}}
+            <div class="cardRegions">
+                {{#each region}}
+                        <div class="list">
+                            <h2 class="h5Region">{{this.name}}</h2>
+                            <p class="paragRegion">{{this.description}}</p>
+                            <div class="btns">
+                                <a
+                                    href="/edit-region/{{this.regionId}}?edit=true"
+                                    class="btn btn-warning"
+                                >Edit</a>
 
-                <div class="card col-md-3">
-                    <div class="card-body">
-                    <div class="img-div">
-                        <img class="pokemonimg" src="{{this.imageUrl}}" class="img_movie card-img-top" alt="{{this.title}}" />
-                        <h5 class="card-title">{{pokemon.name}}</h5>
-                    </div>
-                    <p class="card-text">{{hero.description}}</p>
-                    <h6 class="card-subtitle mb-2 text-muted">Type: {{hero.race.dataValues.name}}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Region: {{hero.race.dataValues.name}} </h6>
-                    <a
-                        href="/edit-region/{{pokemon.id}}?edit=true"
-                        class="btn btn-warning"
-                    >Edit</a>
+                                <form id="form-delete" class="form-inline DeleteRegion" action="/delete-region" method="post">
+                                    <input type="hidden" name="regionId" value="{{this.regionId}}" />
+                                    <button type="submit" id="delete-region" class="btn btn-danger delete-region">Delete</button>
 
-                    <form id="form-delete" class="form-inline" action="/delete-region" method="post">
-                        <input type="hidden" name="regionId" value="{{pokemon.id}}" />
-                        <button type="submit" id="delete-region" class="btn btn-danger">Delete</button>
-
-                    </form>
-                    </div>
-                </div>
-
+                                </form>
+                            </div>
+                        </div>
                 {{/each}}
+            </div>
 
             {{else}}
 

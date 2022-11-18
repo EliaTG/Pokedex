@@ -9,11 +9,16 @@ const Type = require("./models/Type");
 const app = express();
 
 const ErrorController = require("./controllers/ErrorController")
+const compareHelpers = require('./util/helpers/compare')
+
 
 app.engine("hbs", expressHbs.engine({
     layoutsDir: "views/layouts/",
     defaultLayout: "main-layout",
-    extname: 'hbs'
+    extname: 'hbs',
+    helpers: {
+        equalValue: compareHelpers.EqualValue,
+      },
     },
 ))
 app.set("view engine", "hbs");

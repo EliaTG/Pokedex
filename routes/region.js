@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-const regionsController = require('../controllers/RegionsController');
+const regionController = require('../controllers/RegionsController');
 
-router.get('/regions',regionsController.GetRegionsList);
-router.get("/create-region", regionsController.GetCreateRegion);
-router.post("/create-region", regionsController.PostCreateRegion);
-// router.get("/edit-region/:regionId", regionsController.GetEditRegion);
-// router.post("/edit-region", regionsController.PostEditRegion);
-// router.post("/delete-region", regionsController.PostDeleteRegion);
+router.get('/regions',regionController.GetRegionsList);
+router.get("/create-region", regionController.GetCreateRegion);
+router.get("/edit-region/:regionId", regionController.GetEditRegion);
+router.post("/create-region", regionController.PostCreateRegion);
+router.post("/edit-region", regionController.PostEditRegion);
+router.post("/delete-region", regionController.PostDeleteRegion);
+
 
 module.exports = router;

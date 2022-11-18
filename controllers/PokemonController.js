@@ -1,70 +1,154 @@
-const Pokemon = require("../models/Pokemon")
+const Pokemon = require("../models/Pokemon");
+const Region = require("../models/Region");
+const Type = require("../models/Type");
 
 exports.GetIndex = (req, res, next) => {
-    res.render("pokemons/index", {
-        pageTitle: "Pokedex App",
-        homeActive: true,
-
+    Pokemon.findAll().then(result =>{
+        const pokemon = result.map((result) => result.dataValues);
+        res.render("pokemons/index", {
+            pageTitle: "Pokedex App",
+            homeActive: true,
+            pokemon: pokemon,
+    
+        })
+    }).catch((err) =>{
+        console.log(err);
     })
 }
 exports.GetPokemonList = (req, res, next) => {
-    res.render("pokemons/pokemon-list", {
-        pageTitle: "Pokemon List",
-        pokemonActive: true,
+    Pokemon.findAll().then(result =>{
+        const pokemon = result.map((result) => result.dataValues);
+        
+        res.render("pokemons/pokemon-list", {
+            pageTitle: "Pokemon List",
+            pokemonActive: true,
+            pokemon: pokemon,
+            hasPokemon: pokemon.length > 0
+        })
+    }).catch((err) =>{
+        console.log(err);
     })
+   
 }
 exports.GetCreatePokemon = (req, res, next) => {
-    res.render("pokemons/save-pokemon", {
-        pageTitle: "Create a new pokemon",
-        editMode: false,
-        pokemonActive: true,
-    })
+    
+    Region.findAll()
+        .then(result =>{
+            const region = result.map((result) => result.dataValues);
+            Type.findAll().then((result) =>{
+                const type = result.map((result) => result.dataValues);
+                res.render("pokemons/save-pokemon", {
+                    pageTitle: "Create a new pokemon",
+                    editMode: false,
+                    pokemonActive: true,
+                    region: region,
+                    type: type,
+                    hasRegion: region.length > 0,
+                    hasType: type.length > 0
+                })
+            })
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+   
 }
 exports.PostCreatePokemon = (req, res, next) => {
-    const name = req.body.Name;
-    const description = req.body.Description;
-    const imageurl = req.body.ImageUrl;
-    const region = req.body.Region;
-    const type = req.body.Type;
+    const PokemonName = req.body.Name;
+    const PokemonDescription = req.body.Description;
+    const PokemonImageUrl = req.body.ImageUrl;
+    const PokemonRegion = req.body.Region;
+    const PokemonType = req.body.Type;
 
+    Pokemon.create({
+        name: PokemonName, 
+        description: PokemonDescription,
+        imageUrl: PokemonImageUrl,
+        region: PokemonRegion,
+        type: PokemonType
+    })
+    .then(result =>{
+        res.redirect("/pokemons")
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
-   res.redirect("/")
 }
 exports.GetEditPokemon = (req, res, next) => {
    const edit = req.query.edit;
    const pokemonId = req.params.pokemonId;
 
    if(!edit){
-        return res.redirect("/")
+        return res.redirect("/pokemons")
    }
-    res.render("pokemons/save-pokemon",{
-    pageTitle: "Edit Pokemon",
-    editMode: edit,
-    pokemonActive: true,
+    Pokemon.findOne({ where: { id: pokemonId } })
+    .then((result) => {
+      const pokemon = result.dataValues;   
 
-   })
+      if (!pokemon) {
+        return res.redirect("/pokemons");
+      }
+        Region.findAll()
+            .then((result) => {
+            const region = result.map((result) => result.dataValues);
+            
+                Type.findAll().then((result) => {
+                    const type = result.map((result) => result.dataValues);
+
+                        res.render("pokemons/save-pokemon",{
+                            pageTitle: "Edit Pokemon",
+                            editMode: edit,
+                            pokemonActive: true,
+                            pokemon: pokemon,
+                            region: region,
+                            type: type,
+                            hasRegion: region.length > 0,
+                            hasType: type.length > 0
+                        });
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+   
 }
 exports.PostEditPokemon = (req, res, next) => {
-   const edit = req.query.edit;
-   const pokemonId = req.params.pokemonId;
+    const PokemonName = req.body.Name;
+    const PokemonDescription = req.body.Description;
+    const PokemonImageUrl = req.body.ImageUrl;
+    const PokemonRegionId = req.body.RegionId;
+    const PokemonTypeId = req.body.TypeId;
+    const pokemonId = req.body.pokemonId;
 
-   if(!edit){
-        return res.redirect("/")
-   }
-    res.render("pokemons/save-pokemon",{
-    pageTitle: "Edit Pokemon",
-    editMode: edit,
-    pokemonActive: true,
-
-   })
+   Pokemon.update({
+        name: PokemonName, 
+        description: PokemonDescription, 
+        imageUrl: PokemonImageUrl, 
+        region: PokemonRegionId,
+        type: PokemonTypeId
+    }, 
+        {where: {id: pokemonId}}
+    ).then(result =>{
+        return res.redirect("/pokemons")
+    }).catch(err =>{
+        console.log(err);
+    })
+  
 }
 exports.PostDeletePokemon = (req, res, next) => {
    const pokemonId = req.body.pokemonId;
 
-    // res.render("pokemons/save-pokemon",{
-    //     pageTitle: "Edit Pokemon",
-    //     editMode: edit,
-        
-    // })
-    return res.redirect("/")
+   Pokemon.destroy({where: {id: pokemonId}})
+   .then(result =>{
+    return res.redirect("/pokemons")
+    }).catch(err =>{
+        console.log(err);
+    })
+    
 }

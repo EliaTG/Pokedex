@@ -1,17 +1,18 @@
-// const Region = require("../models/region")
+const Region = require("../models/Region")
 
 exports.GetRegionsList = (req, res, next) => {
-    res.render("regions/region-list", {
-        pageTitle: "Regions",
-        regionActive: true,
+    Region.findAll().then(result =>{
+        const region = result.map((result) => result.dataValues);
+        res.render("regions/region-list", {
+            pageTitle: "Regions List",
+            regionActive: true,
+            region: region,
+            hasRegion: region.length > 0
+        })
+    }).catch((err) =>{
+        console.log(err);
     })
 }
-// exports.GetIndex = (req, res, next) => {
-//     res.render("pokemons/index", {
-//         pageTitle: "Pokedex App",
-
-//     })
-// }
 
 exports.GetCreateRegion = (req, res, next) => {
     res.render("regions/save-region", {
@@ -21,40 +22,65 @@ exports.GetCreateRegion = (req, res, next) => {
     })
 }
 exports.PostCreateRegion = (req, res, next) => {
-    const name = req.body.Name;
+    const RegionName = req.body.Name;
+    const RegionDescription = req.body.Description;
 
-
-   res.redirect("/")
+    Region.create({name: RegionName, description: RegionDescription})
+    .then(result =>{
+        res.redirect("/regions")
+    }).catch(err => {
+        console.log(err);
+    })
 }
-// exports.GetEditRegion = (req, res, next) => {
-//    const edit = req.query.edit;
-//    const RegionId = req.params.RegionId;
+exports.GetEditRegion = (req, res, next) => {
+   const edit = req.query.edit;
+   const RegionId = req.params.RegionId;
 
-//    if(!edit){
-//         return res.redirect("/")
-//    }
-//     res.render("regions/save-region",{
-//     pageTitle: "Edit Region",
-//     editMode: edit,
-//     regionActive: true,
+   if(!edit){
+        return res.redirect("/regions")
+    }
+  Region.findOne({where: {id: RegionId}})
+        .then(result => {
+            const region = result.dataValues;
+                if(!region){
+                    return res.redirect("/regions");
+                }
+                    res.render("regions/save-region",{
+                        pageTitle: "Edit Region",
+                        editMode: edit,
+                        regionActive: true,
+                        region: region,
+                    })
+            }).catch(err => {
+                console.log(err);
+            });
+}
+exports.PostEditRegion = (req, res, next) => {
+    const RegionName = req.body.Name;
+    const RegionDescription = req.body.Description;
+    const RegionId = req.body.RegionId;
 
-//    })
-// }
-// exports.PostEditRegion = (req, res, next) => {
-//    const edit = req.query.edit;
-//    const RegionId = req.params.RegionId;
+   Region.update({
+        name: RegionName, 
+        description: RegionDescription}, 
+        {where: {id: RegionId}}
+    ).then(result =>{
+        return res.redirect("/regions")
+    }).catch(err =>{
+        console.log(err);
+    })
+  
+}
 
-//    if(!edit){
-//         return res.redirect("/")
-//    }
-//     res.render("regions/save-region",{
-//     pageTitle: "Edit Region",
-//     editMode: edit,
-//      regionActive: true,
-//    })
-// }
-// exports.PostDeleteRegion = (req, res, next) => {
-//    const RegionId = req.body.RegionId;
+exports.PostDeleteRegion = (req, res, next) => {
+    const RegionId = req.body.RegionId;
+ 
+    Region.destroy({where: {RegionId: RegionId}})
+    .then(result =>{
+     return res.redirect("/regions")
+     }).catch(err =>{
+         console.log(err);
+     });
+     
+ }
 
-//     return res.redirect("/")
-// }
