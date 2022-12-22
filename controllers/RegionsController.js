@@ -34,7 +34,7 @@ exports.PostCreateRegion = (req, res, next) => {
 }
 exports.GetEditRegion = (req, res, next) => {
    const edit = req.query.edit;
-   const RegionId = req.params.RegionId;
+   const RegionId = req.params.regionId;
 
    if(!edit){
         return res.redirect("/regions")
@@ -58,7 +58,7 @@ exports.GetEditRegion = (req, res, next) => {
 exports.PostEditRegion = (req, res, next) => {
     const RegionName = req.body.Name;
     const RegionDescription = req.body.Description;
-    const RegionId = req.body.RegionId;
+    const RegionId = req.body.regionId;
 
    Region.update({
         name: RegionName, 
@@ -73,9 +73,9 @@ exports.PostEditRegion = (req, res, next) => {
 }
 
 exports.PostDeleteRegion = (req, res, next) => {
-    const RegionId = req.body.RegionId;
+    const RegionId = req.body.regionId;
  
-    Region.destroy({where: {RegionId: RegionId}})
+    Region.destroy({where: { id: RegionId}})
     .then(result =>{
      return res.redirect("/regions")
      }).catch(err =>{

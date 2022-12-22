@@ -16,15 +16,7 @@ const Pokemon = sequelize.define("pokemon",{
         type: Sequelize.TEXT,
         allowNull: false,
     },
-    type:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    region:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    imageUrl:{
+    imagePath:{
         type: Sequelize.STRING,
         allowNull: true,
     },

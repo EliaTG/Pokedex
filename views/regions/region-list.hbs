@@ -28,12 +28,12 @@
                             <p class="paragRegion">{{this.description}}</p>
                             <div class="btns">
                                 <a
-                                    href="/edit-region/{{this.regionId}}?edit=true"
+                                    href="/edit-region/{{this.id}}?edit=true"
                                     class="btn btn-warning"
                                 >Edit</a>
 
                                 <form id="form-delete" class="form-inline DeleteRegion" action="/delete-region" method="post">
-                                    <input type="hidden" name="regionId" value="{{this.regionId}}" />
+                                    <input type="hidden" name="regionId" value="{{this.id}}" />
                                     <button type="submit" id="delete-region" class="btn btn-danger delete-region">Delete</button>
 
                                 </form>

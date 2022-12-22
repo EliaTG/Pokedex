@@ -26,18 +26,18 @@
                 <div class="card col-md-3">
                     <div class="card-body">
                     <div class="img-div">
-                        <img class="pokemonimg" src="{{this.imageUrl}}" class="img_movie card-img-top" alt="{{this.name}}" />
+                         <img src="{{pokem.imagePath}}" class="img_movie card-img-top pokemonimg" alt="{{pokem.name}}">
                         <h5 class="card-title">{{this.name}}</h5>
                     </div>
                     <p class="card-text">{{this.description}}</p>
                     <h6 class="card-subtitle mb-2 text-muted">Type: {{pokem.type.dataValues.name}}</h6>
                     <h6 class="card-subtitle mb-2 text-muted">Region: {{pokem.region.dataValues.name}} </h6>
                             <form id="form-delete" class="form-inline" action="/delete-pokemon" method="post">
-                                <input type="hidden" name="pokemonId" value="{{this.id}}" />
+                                <input type="hidden" name="pokemonId" value="{{pokem.id}}" />
                                 <button type="submit" id="delete-pokemon" class="btn btnDelete delete-pokemon btn-danger float-end">Delete</button>
                             </form>
                             <a
-                                href="/edit-pokemon/{{this.id}}?edit=true"
+                                href="/edit-pokemon/{{pokem.id}}?edit=true"
                                 class="btn btn-warning float-end btnEdit"
                             >Edit</a>
                     </div>

@@ -20,19 +20,17 @@
             <div class="row">
             {{#if hasType}}
                 <div class="cardRegions">
-                    {{#each type as |type|}}
-
-                    {{!-- <div class="card col-md-3"> --}}
-                        {{!-- <div class="card-body"> --}}
+                    {{#each type}}
                             <div class="list">
                                 <h2 class="h5Region">{{this.name}}</h2>
                                 <p class="paragRegion">{{this.description}}</p>
                                 <div class="btns">
-                                    <a href="/edit-type/{{pokemon.id}}?edit=true"
-                                        class="btn btn-warning">Edit</a>
+                                    <a href="/edit-type/{{this.id}}?edit=true"
+                                        class="btn btn-warning">Edit
+                                    </a>
 
                                     <form id="form-delete" class="form-inline DeleteType" action="/delete-type" method="post">
-                                            <input type="hidden" name="typeId" value="{{pokemon.id}}" />
+                                            <input type="hidden" name="typeId" value="{{this.id}}" />
                                             <button type="submit" id="delete-type" class="btn btn-danger delete-pokemon">Delete</button>
                                     </form>
                                 </div>

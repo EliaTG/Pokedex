@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = require("../util/database");
 
 const Region = sequelize.define("region",{
-    regionId:{
+    id:{
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,

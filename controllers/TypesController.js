@@ -22,12 +22,6 @@ exports.GetCreateType = (req, res, next) => {
     })
 }
 exports.PostCreateType = (req, res, next) => {
-    const name = req.body.Name;
-
-
-   res.redirect("/")
-}
-exports.PostCreateType = (req, res, next) => {
     const TypeName = req.body.Name;
     const TypeDescription = req.body.Description;
 
@@ -40,12 +34,12 @@ exports.PostCreateType = (req, res, next) => {
 }
 exports.GetEditType = (req, res, next) => {
     const edit = req.query.edit;
-    const TypeId = req.params.TypeId;
+    const typeId = req.params.typeId;
  
     if(!edit){
          return res.redirect("/types")
      }
-   Type.findOne({where: {id: TypeId}})
+   Type.findOne({where: {id: typeId}})
          .then(result => {
              const type = result.dataValues;
                  if(!type){
@@ -53,8 +47,8 @@ exports.GetEditType = (req, res, next) => {
                  }
                      res.render("type/save-type",{
                          pageTitle: "Edit Type",
-                         editMode: edit,
                          typeActive: true,
+                         editMode: edit,
                          type: type,
                      })
              }).catch(err => {
@@ -64,11 +58,11 @@ exports.GetEditType = (req, res, next) => {
 exports.PostEditType = (req, res, next) => {
     const TypeName = req.body.Name;
     const TypeDescription = req.body.Description;
-    const TypeId = req.body.TypeId;
+    const typeId = req.body.typeId;
 
     Type.update(
         {name: TypeName, description: TypeDescription},
-        {where: {id: TypeId}}
+        {where: {id: typeId}}
     ).then(result =>{
         return res.redirect("/types")
     }).catch(err =>{
@@ -76,9 +70,9 @@ exports.PostEditType = (req, res, next) => {
     })
 }
 exports.PostDeleteType = (req, res, next) => {
-    const TypeId = req.body.TypeId;
+    const typeId = req.body.typeId;
  
-    Type.destroy({where: {TypeId: TypeId}})
+    Type.destroy({where: {id: typeId}})
     .then(result =>{
      return res.redirect("/types")
      }).catch(err =>{
