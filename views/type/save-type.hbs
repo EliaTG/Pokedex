@@ -7,26 +7,25 @@
           {{#if editMode}}Edit{{else}}Create{{/if}} a type
         </div>
         <div class="card-pokemon">
-          <form method="POST" action="{{#if editMode}}/edit-type{{else}}/create-type{{/if}}">
-            <div class="mb-3">
-              <label for="name" class="form-label">Type of pokemon</label>
-              <input type="text" class="form-control" id="name" name="Name" value="{{#if editMode}}{{type.name}}{{/if}}" />
-            </div>
-            <div class="mb-3">
-              <label for="description" class="form-label">Description</label>
-              <textarea
-                name="Description" id="description"cols="60" rows="5" class="form-control"> {{#if editMode}}{{type.description}}{{/if}}</textarea>
-            </div>
-          {{#if editMode}}
+                <form method="POST" action="{{#if editMode}}/edit-type{{else}}/create-type{{/if}}">
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Type of pokemon</label>
+                    <input type="text" class="form-control" id="name" name="Name" value="{{#if editMode}}{{type.name}}{{/if}}" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea
+                      name="Description" id="description"cols="60" rows="5" class="form-control"> {{#if editMode}}{{type.description}}{{/if}}</textarea>
+                  </div>
+                {{#if editMode}}
 
-          <input type="hidden" name="typeId" value="{{type.id}}">
-          
-          {{/if}}
+                <input type="hidden" name="typeId" value="{{type.id}}">
+                
+                {{/if}}
 
-          <button type="submit" class="btn btn-primary">{{#if editMode}}Edit{{else}}Create{{/if}}</button>
-           <a href="/types" type="button" class="btn btn-warning">Back</a>
-        </form>
-
+                <button type="submit" class="btn btn-primary">{{#if editMode}}Edit{{else}}Create{{/if}}</button>
+                <a href="/types" type="button" class="btn btn-warning">Back</a>
+              </form>
       </div>
     </div>
 

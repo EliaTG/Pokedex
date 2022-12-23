@@ -4,12 +4,17 @@
    --white: #f7f7f7;
    --background: #ddfae8;
     --fontColor: #458e69;
-    --borderYellow: #fee264;
-
-
-   --pikachu: #F6CF57;
-
-   /* --Fire:  */
+    --borderYellow: #fee264;  
+    --pikachu: #F6CF57;
+    
+    /* --Type of pokemon color:  */
+    --Fire: #F9D2B6;
+    --Grass: #ACEA8C;
+    --Water: #9BB8FE;
+    --Electric: #FCEEB6;
+    --Ice: #BDF3F3;
+    --Poison: #D878D8;
+    --Ground: #F9D2B6;
 }
 *{
     margin: 0;
@@ -182,7 +187,6 @@ img.pokemonimg{
     max-height: 300px;
     width: 100%;
     margin: 0 0 5px 0;
-    /* object-fit: cover; */
 }
 .img-div{
     display: flex;
@@ -234,7 +238,6 @@ img.squirtle-region{
     display: flex;
     flex-direction: column;
     background-color: #bbb;
-    background-color: var(--borderYellow);
 }
 .btns{
     display: flex;
@@ -252,6 +255,29 @@ img.bulbasur-type{
     height: 400px;
     width: auto;
 }
+/* Colors */
+.Fire .list{
+    background-color: var(--Fire);
+}
+.Grass .list{
+    background-color: var(--Grass);
+}
+.Water .list{
+    background-color: var(--Water);
+}
+.Electric .list{
+    background-color: var(--Electric);
+}
+.Ice .list{
+    background-color: var(--Ice);
+}
+.Poison .list{
+    background-color: var(--Poison);
+}
+.Ground .list{
+    background-color: var(--Ground);
+}
+
 /* 404 not found */
 div.notfound{
     display: flex;

@@ -34,12 +34,12 @@ exports.PostCreateRegion = (req, res, next) => {
 }
 exports.GetEditRegion = (req, res, next) => {
    const edit = req.query.edit;
-   const RegionId = req.params.regionId;
+   const regionId = req.params.regionId;
 
    if(!edit){
         return res.redirect("/regions")
     }
-  Region.findOne({where: {id: RegionId}})
+  Region.findOne({where: {id: regionId}})
         .then(result => {
             const region = result.dataValues;
                 if(!region){
@@ -47,8 +47,8 @@ exports.GetEditRegion = (req, res, next) => {
                 }
                     res.render("regions/save-region",{
                         pageTitle: "Edit Region",
-                        editMode: edit,
                         regionActive: true,
+                        editMode: edit,
                         region: region,
                     })
             }).catch(err => {
@@ -58,12 +58,12 @@ exports.GetEditRegion = (req, res, next) => {
 exports.PostEditRegion = (req, res, next) => {
     const RegionName = req.body.Name;
     const RegionDescription = req.body.Description;
-    const RegionId = req.body.regionId;
+    const regionId = req.body.regionId;
 
    Region.update({
         name: RegionName, 
         description: RegionDescription}, 
-        {where: {id: RegionId}}
+        {where: {id: regionId}}
     ).then(result =>{
         return res.redirect("/regions")
     }).catch(err =>{

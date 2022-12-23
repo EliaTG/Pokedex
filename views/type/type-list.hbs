@@ -21,6 +21,7 @@
             {{#if hasType}}
                 <div class="cardRegions">
                     {{#each type}}
+                    <div class={{this.name}}>
                             <div class="list">
                                 <h2 class="h5Region">{{this.name}}</h2>
                                 <p class="paragRegion">{{this.description}}</p>
@@ -31,10 +32,11 @@
 
                                     <form id="form-delete" class="form-inline DeleteType" action="/delete-type" method="post">
                                             <input type="hidden" name="typeId" value="{{this.id}}" />
-                                            <button type="submit" id="delete-type" class="btn btn-danger delete-pokemon">Delete</button>
+                                            <button type="submit" id="delete-type" class="btn btn-danger delete-type">Delete</button>
                                     </form>
                                 </div>
                             </div>
+                        </div>
                     {{/each}}
                 </div>
 
