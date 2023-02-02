@@ -56,7 +56,6 @@ Start the server
 - CSS
 - Bootstrap
 - JS
-
 **Backend:** 
 - Node js
 - Express
