@@ -56,14 +56,15 @@ Start the server
 - CSS
 - Bootstrap
 - JS
+
 **Backend:** 
 - Node js
 - Express
 - express-handlebars
 - multer
-ORM
+**ORM**
 - sequelize
-DB
+**DB**
 - mySQL
 
 
